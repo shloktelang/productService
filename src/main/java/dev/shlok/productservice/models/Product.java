@@ -1,5 +1,6 @@
 package dev.shlok.productservice.models;
 
+import dev.shlok.productservice.dtos.RatingDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +12,5 @@ public class Product extends BaseModel {
     private String description;
     private Category category;
     private String imageUrl;
-
+    private RatingDto rating;
 }

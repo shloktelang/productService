@@ -1,21 +1,24 @@
 package dev.shlok.productservice.services;
 
 import dev.shlok.productservice.dtos.ProductDto;
+import dev.shlok.productservice.models.Product;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 public interface ProductService {
-    @GetMapping()
-    String getAllProducts();
 
-    @GetMapping("/{productId}")
-    String getSingleProduct(@PathVariable("productId") Long productId);
+    List<Product> getAllProducts();
 
-    @PostMapping()
-    String addNewProduct(@RequestBody ProductDto productDto);
 
-    @PutMapping("/{productId}")
-    String updateProduct(@PathVariable("productId") Long productId);
+    Product getSingleProduct(Long productId);
 
-    @DeleteMapping("/{productId}")
-    String deleteProduct(@PathVariable("productId") Long productId);
+
+    Product addNewProduct(ProductDto productDto);
+
+
+    Product updateProduct(Long productId, Product product);
+
+
+    boolean deleteProduct(@PathVariable("productId") Long productId);
 }

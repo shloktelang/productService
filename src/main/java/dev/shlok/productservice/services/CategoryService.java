@@ -1,10 +1,12 @@
 package dev.shlok.productservice.services;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import dev.shlok.productservice.models.Product;
+
+import java.util.List;
 
 public interface CategoryService {
 
-    String getAllCategories();
+    List<String> getAllCategories();
 
-    String getProductsInCategory();
+    List<Product> getProductsInCategory(String categoryName);
 }

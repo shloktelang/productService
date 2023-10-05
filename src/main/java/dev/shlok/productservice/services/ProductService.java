@@ -5,13 +5,14 @@ import dev.shlok.productservice.models.Product;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
 
     List<Product> getAllProducts();
 
 
-    Product getSingleProduct(Long productId);
+    Optional<Product> getSingleProduct(Long productId);
 
 
     Product addNewProduct(ProductDto productDto);
@@ -20,5 +21,5 @@ public interface ProductService {
     Product updateProduct(Long productId, Product product);
 
 
-    boolean deleteProduct(@PathVariable("productId") Long productId);
+    Product deleteProduct(Long productId);
 }

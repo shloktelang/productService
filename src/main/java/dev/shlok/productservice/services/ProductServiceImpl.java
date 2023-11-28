@@ -2,7 +2,6 @@ package dev.shlok.productservice.services;
 
 import dev.shlok.productservice.clients.fakestoreapi.FakeStoreProductDto;
 import dev.shlok.productservice.dtos.ProductDto;
-import dev.shlok.productservice.dtos.RatingDto;
 import dev.shlok.productservice.models.Category;
 import dev.shlok.productservice.models.Product;
 import jakarta.annotation.Nullable;

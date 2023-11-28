@@ -4,14 +4,16 @@ import dev.shlok.productservice.models.Category;
 import dev.shlok.productservice.models.Product;
 import dev.shlok.productservice.repositories.SelfCategoryRepository;
 import dev.shlok.productservice.repositories.SelfProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-@Service
-public class SelfCategoryService {
+@Service(value = "selfCategoryService")
+@Primary
+public class SelfCategoryService implements CategoryService {
     SelfCategoryRepository selfCategoryRepository;
     SelfProductRepository selfProductRepository;
     public SelfCategoryService(SelfCategoryRepository selfCategoryRepository, SelfProductRepository selfProductRepository){

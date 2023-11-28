@@ -1,5 +1,6 @@
 package dev.shlok.productservice.models;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,8 +10,11 @@ import java.util.Date;
 
 @Getter
 @Setter
+@MappedSuperclass
 public class BaseModel {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Date createdAt;
     private Date lastUpdatedAt;
     private boolean isDeleted;

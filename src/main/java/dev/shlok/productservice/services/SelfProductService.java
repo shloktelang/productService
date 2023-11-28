@@ -3,13 +3,15 @@ package dev.shlok.productservice.services;
 import dev.shlok.productservice.dtos.ProductDto;
 import dev.shlok.productservice.models.Product;
 import dev.shlok.productservice.repositories.SelfProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class SelfProductService {
+@Service(value = "selfProductService")
+@Primary
+public class SelfProductService{
     SelfProductRepository selfProductRepository;
     public SelfProductService(SelfProductRepository selfProductRepository){
         this.selfProductRepository = selfProductRepository;
@@ -43,9 +45,6 @@ public class SelfProductService {
         }
         if(product.getImageUrl()!=null){
             target.setImageUrl(product.getImageUrl());
-        }
-        if(product.getRating()!=null){
-            target.setRating(product.getRating());
         }
         return target;
     }

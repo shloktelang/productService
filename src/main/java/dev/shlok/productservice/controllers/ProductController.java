@@ -40,37 +40,36 @@ public class ProductController {
     @GetMapping()
     public ResponseEntity<List<Product>> getAllProducts(@Nullable @RequestHeader("AUTH_TOKEN") String token,
                                                         @Nullable @RequestHeader("USER_ID") Long userId) {
-        // check if token exists
-        if (token == null || userId == null) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        ValidatetokenResponseDto response = authenticationClient.validate(token, userId);
-
-        // check if token is valid
-        if (response.getSessionStatus().equals(SessionStatus.INVALID)) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        // validate token
-        // RestTemplate rt = new RestTRemplate();
-        //  rt.get("localhost:9090/auth/validate?)
-
-        // check if user has permissions
-        boolean isUserAdmin = false;
-        for (Role role: response.getUserDto().getRoles()) {
-            if (role.getName().equals("ADMIN")) {
-                isUserAdmin = true;
-            }
-        }
-
-        if (!isUserAdmin) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
+//        // check if token exists
+//        if (token == null || userId == null) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
+//
+//        ValidatetokenResponseDto response = authenticationClient.validate(token, userId);
+//
+//        // check if token is valid
+//        if (response.getSessionStatus().equals(SessionStatus.INVALID)) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
+//
+//        // validate token
+//        // RestTemplate rt = new RestTRemplate();
+//        //  rt.get("localhost:9090/auth/validate?)
+//
+//        // check if user has permissions
+//        boolean isUserAdmin = false;
+//        for (Role role: response.getUserDto().getRoles()) {
+//            if (role.getName().equals("ADMIN")) {
+//                isUserAdmin = true;
+//            }
+//        }
+//
+//        if (!isUserAdmin) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
 
         List<Product> products = productService.getAllProducts();
 
-//        products.get(0).setPrice(100); /// Bug induced in my code
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
@@ -91,7 +90,7 @@ public class ProductController {
         ResponseEntity<Product> response = new ResponseEntity(
                 productService.getSingleProduct(productId),
                 headers,
-                HttpStatus.NOT_FOUND
+                HttpStatus.OK
         );
 
         return response;

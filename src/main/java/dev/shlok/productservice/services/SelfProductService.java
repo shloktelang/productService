@@ -4,6 +4,8 @@ import dev.shlok.productservice.dtos.ProductDto;
 import dev.shlok.productservice.models.Product;
 import dev.shlok.productservice.repositories.SelfProductRepository;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 @Service(value = "selfProductService")
 @Primary
-public class SelfProductService{
+public class SelfProductService implements ProductService{
     SelfProductRepository selfProductRepository;
     public SelfProductService(SelfProductRepository selfProductRepository){
         this.selfProductRepository = selfProductRepository;
@@ -22,6 +24,16 @@ public class SelfProductService{
 
     public Optional<Product> getSingleProduct(Long productId){
         return selfProductRepository.findById(productId);
+    }
+
+    @Override
+    public Product addNewProduct(ProductDto productDto) {
+        return null;
+    }
+
+    @Override
+    public Product updateProduct(Long productId, Product product) {
+        return null;
     }
 
     public Product addNewProduct(Product product){
@@ -49,7 +61,15 @@ public class SelfProductService{
         return target;
     }
 
-    public void deleteProduct(Long productId){
-        selfProductRepository.deleteById(productId);
+    public Product deleteProduct(Long productId){
+        return null;
+    }
+
+    @Override
+    public Page<Product> getProducts(int numberOfProducts, int offset) {
+        Page<Product> products = selfProductRepository.findAll(
+                PageRequest.of((offset/numberOfProducts),numberOfProducts)
+        );
+        return products;
     }
 }

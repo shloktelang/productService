@@ -2,6 +2,7 @@ package dev.shlok.productservice.services;
 
 import dev.shlok.productservice.dtos.ProductDto;
 import dev.shlok.productservice.models.Product;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,4 +23,5 @@ public interface ProductService {
 
 
     Product deleteProduct(Long productId);
+    Page<Product> getProducts(int numberOfProducts, int offset);
 }

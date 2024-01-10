@@ -5,6 +5,7 @@ import dev.shlok.productservice.clients.authenticationclient.dtos.Role;
 import dev.shlok.productservice.clients.authenticationclient.dtos.SessionStatus;
 import dev.shlok.productservice.clients.authenticationclient.dtos.ValidatetokenResponseDto;
 import dev.shlok.productservice.dtos.ErrorResponseDto;
+import dev.shlok.productservice.dtos.GetProductsRequestDto;
 import dev.shlok.productservice.dtos.GetSingleProductResponseDto;
 import dev.shlok.productservice.dtos.ProductDto;
 import dev.shlok.productservice.exceptions.NotFoundException;
@@ -13,6 +14,7 @@ import dev.shlok.productservice.models.Category;
 import dev.shlok.productservice.repositories.SelfProductRepository;
 import dev.shlok.productservice.services.ProductService;
 import jakarta.annotation.Nullable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -34,6 +36,12 @@ public class ProductController {
         this.productRepository = productRepository;
         this.productService = productService;
         this.authenticationClient = authenticationClient;
+    }
+
+    public ResponseEntity<Page<Product>> getProducts(GetProductsRequestDto request){
+        Page<Product> products = productService.getProducts(
+                request.getNumberOfResults(), request.getOffset());
+        return new ResponseEntity<>(products,HttpStatus.OK);
     }
 
     //Make only admins be able to access getallproducts, auth service

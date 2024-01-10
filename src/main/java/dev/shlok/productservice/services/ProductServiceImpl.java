@@ -6,6 +6,7 @@ import dev.shlok.productservice.models.Category;
 import dev.shlok.productservice.models.Product;
 import jakarta.annotation.Nullable;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -149,5 +150,10 @@ public class ProductServiceImpl implements ProductService{
         );
         return convertFakeStoreProductDtoToProduct(fakeStoreProductDtoResponseEntity.getBody());
 
+    }
+
+    @Override
+    public Page<Product> getProducts(int numberOfProducts, int offset) {
+        return null;
     }
 }

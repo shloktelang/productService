@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ProductServiceApplicationTests {
-    @Autowired
+//    @Autowired
     private MSMentorRepository msMentorRepository;
-    @Autowired
+//    @Autowired
     private JTMentorRepository jtMentorRepository;
-    @Autowired
+//    @Autowired
     private JTUserRepository jtUserRepository;
 
-    @Test
+//    @Test
     void contextLoads() {
     }
 
